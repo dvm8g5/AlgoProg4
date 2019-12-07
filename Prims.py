@@ -7,10 +7,11 @@ def PRIM(G, w, r: vertex):
         ver.set_distance(math.inf)
         ver.set_predecessor(None)
     G[r.get_index()].set_distance(0)
+    G[r.get_index()].set_predecessor(math.inf)
 
     adj_vert = []
     adj_vert.append(G[r.get_index()])
-    Q = G
+    Q = G.copy()
     while Q is not None:
         u = function(G, w, adj_vert)
         Q.remove(u)
@@ -31,13 +32,15 @@ def function(G: [vertex], w, adj_vert):
                 min_ver_index = index
                 min_edge = w[ver_index][index]
                 predecessor_index = ver.get_index()
+                w[ver_index][index] = math.inf
 
-    for ver in adj_vert:
-        print(ver.get_index(),end=', ')
     print()
-    adj_vert.append(min_ver)
-    G[min_ver_index].set_predecessor = predecessor_index
-    G[min_ver_index].set_distance = w[predecessor_index][min_ver_index]
+    G[min_ver_index].set_predecessor(predecessor_index)
+    G[min_ver_index].set_distance(min_edge)
+    adj_vert.append(G[min_ver_index])
+    for ver in adj_vert:
+        print(ver.get_index(),' Predecessor: ', ver.get_predecessor(), 'Distance: ', ver.get_distance())
+    print(end='\n\n')
 
     return G[min_ver_index]
 
@@ -45,7 +48,8 @@ def main():
     vertacies = []
     for index in range(0,9):
         vertacies.append(vertex.Vertex(index=index))
-    # print(vertacies)
+    for ver in vertacies:
+        print(ver)
 
     weights = [[0,4,math.inf,math.inf,math.inf,math.inf,math.inf,8,math.inf,],
                [4,0,8,math.inf,math.inf,math.inf,math.inf,11,math.inf,],

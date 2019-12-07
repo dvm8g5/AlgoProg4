@@ -6,6 +6,9 @@ class Vertex:
         self.predecessor = predecessor
         self.index = index
 
+    def __str__(self):
+        return str(self.index)
+
     def get_color(self):
         return self.color
 
