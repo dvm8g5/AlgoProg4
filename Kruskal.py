@@ -1,41 +1,43 @@
 import MyGraph
-import math
+from operator import itemgetter
 
 
 def MST_Kruskal(G: MyGraph):
-    a_forest = G.adj_matrix
-    for x in a_forest.vertices:                 # Initializes the a_forest to have no connections, i.e. all are -1
-        for y in a_forest.vertices:
-            a_forest.adj_matrix[x][y] = 0
+    # Initializes the a_forest to have no connections, i.e. all are 0
+    a_forest = [[0 for y in G.vertices] for x in G.vertices]
 
+    # # Creates a list of lists, representing the disjoint sets that are initially each and every vertex
+    # sets = []
+    # for x in G.vertices:
+    #     sets.append([x])
+    le_tree = []
 
-
-    edge_list = {}
+    edge_list = []
     to_diagonal = 1
-    for x in G.vertices:                        # Yields a dictionary that contains all edges and their weights, denoted by the key being "<start_vertex><end_vertex>
+    # Yields a list that contains the edges, via tuples of form (<vert_start>, <vert_end>, <weight>)
+    for x in G.vertices:
         for y in range(0, to_diagonal):
             if G.adj_matrix[x][y] != 0:
-                edge_list["{}{}".format(x, y)] = G.adj_matrix[x][y]
+                edge_tup = (x, y, G.adj_matrix[x][y])
+                edge_list.append(edge_tup)
         to_diagonal += 1
 
-    min_edge = math.inf
-    min_edge_row = 0
-    min_edge_col = 0
-    to_diagonal = 1
-    for x in G.vertices:                        # determines the smallest edge weight of all vertices
-        for y in range(0, to_diagonal):
-            if edge_list["{}{}".format(x, y)] < min_edge:
-                min_edge = edge_list["{}{}".format(x, y)]
-                min_edge_row = x
-                min_edge_col = y
-        to_diagonal += 1
+    # Gypsy magic to sort this list of tuples based on the tuple[2] value (the edge's weight).
+    edge_list.sort(key=itemgetter(2))
 
-
-
-
-
-
-    return
+    # For each edge in the graph, taken in nondecreasing order by weight
+    u_tree = -1
+    v_tree = -1
+    for each_edge in edge_list:
+        for each_set in le_tree:
+            if edge_list[each_edge][0] in le_tree[each_set]:
+                u_tree = each_set
+            if edge_list[each_edge][1] in le_tree[each_set]:
+                v_tree = each_set
+            if u_tree != v_tree:
+                a_forest[edge_list[each_edge][0]][edge_list[each_edge][1]] = edge_list[each_edge][2]
+                le_tree.append("{}{}".format(edge_list[each_edge][0], edge_list[each_edge][1]))
+    return a_forest
 
 
 
