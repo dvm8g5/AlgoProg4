@@ -3,6 +3,11 @@ class vertex:
     distance = None
     predesesor = None
 
+    def __init__(self):
+        self.color = None
+        self.distance = None
+        self.predesesor = None
+
     def get_color(self):
         return self.color
     def get_distance(self):
