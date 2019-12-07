@@ -8,8 +8,8 @@ graph.export_as_gv()
 
 # Setup
 timer = Timing()
-kruskal_results = timer.test_Kruskal()
-prim_results = timer.test_Prim()
+kruskal_results = timer.test_kruskal()
+prim_results = timer.test_prim()
 
 # Open the .csv we're going to write to
 t = datetime.time()
@@ -19,15 +19,15 @@ prim_results_spread = [["" for j in range(timer.max_edges)] for i in range(timer
 
 # Add kruskal results to the .csv file
 for res in kruskal_results:
-    kruskal_results_spread[res.vertices][res.edges] = str(res.time)
+    kruskal_results_spread[res.vertices][res.edges] = str(res.exec_time)
 for row in kruskal_results_spread:
     csv.write(",".join(row) + "\n")
 
-csv.write("\n")
+csv.write(","*len(kruskal_results_spread[0]))
 
 # Add prim results to the .csv file
 for res in prim_results:
-    prim_results_spread[res.vertices][res.edges] = str(res.time)
+    prim_results_spread[res.vertices][res.edges] = str(res.exec_time)
 for row in prim_results_spread:
     csv.write(",".join(row) + "\n")
 
