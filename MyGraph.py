@@ -8,7 +8,8 @@ class MyGraph:
         self.adj_matrix = adj_matrix
         self.vertices = vertices
 
-    def init_random(self, vertex_count: int, edge_count: int):
+    # Creates a randomly-generated undirected weighted graph, with all vertices connected to every other vertex.
+    def init_random(self, vertex_count: int, edge_count: int) -> None:
         if edge_count > (vertex_count ** 2 - vertex_count) / 2:
             print("Tried to create a graph with too many edges!")
             return
@@ -36,14 +37,14 @@ class MyGraph:
             if v2 not in connected_verts:
                 connected_verts.append(v2)
 
-    def clear_vertex_data(self):
+    def clear_vertex_data(self) -> None:
         for v in self.vertices:
             v.reinit()
 
-    def add_edge(self, v1: int, v2: int, weight: int):
+    def add_edge(self, v1: int, v2: int, weight: int) -> None:
         self.adj_matrix[v2][v1] = weight
 
-    def add_vertices(self, amount: int):
+    def add_vertices(self, amount: int) -> None:
         for i in range(amount):
             self.vertices.append(vertex.Vertex(index=len(self.vertices)))
 

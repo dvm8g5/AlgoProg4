@@ -6,16 +6,16 @@ class Vertex:
         self.predecessor = predecessor
         self.index = index
 
-    def get_color(self):
+    def get_color(self) -> str:
         return self.color
 
-    def get_distance(self):
+    def get_distance(self) -> int:
         return self.distance
 
-    def get_predecessor(self):
+    def get_predecessor(self) -> int:
         return self.predecessor
 
-    def get_index(self):
+    def get_index(self) -> int:
         return self.index
 
     def set_color_white(self):
