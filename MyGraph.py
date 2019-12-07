@@ -35,11 +35,15 @@ class MyGraph:
             if v2 not in connected_verts:
                 connected_verts.append(v2)
 
+    # Clears all non-index vertex data
     def clear_vertex_data(self) -> None:
         for v in self.vertices:
+            ind = v.index
             v.reinit()
+            v.index = ind
         return
 
+    # Rebuilds the adjacency matrix from vertex data
     def rebuild_adj_matrix(self) -> None:
         # Reset matrix
         self.adj_matrix = []
@@ -52,28 +56,33 @@ class MyGraph:
         # Make matrix symmetrical along x = y
         self.make_undirected()
 
+    # Effectively removes directed edges by making the adjacency matrix symmetrical along x = y
     def make_undirected(self) -> None:
         for i in range(len(self.adj_matrix)):
             for j in range(len(self.adj_matrix)):
                 if self.adj_matrix[i][j] != 0:
                     self.adj_matrix[j][i] = self.adj_matrix[i][j]
 
+    # Adds an edge between two vertices
     def add_edge(self, v1: int, v2: int, weight: int) -> None:
         self.adj_matrix[v2][v1] = weight
         return
 
+    # Adds the specified amount of blank vertices
     def add_vertices(self, amount: int) -> None:
         self._expand_adj_matrix(amount)
         for i in range(amount):
             self.vertices.append(Vertex(index=len(self.vertices)))
         return
 
+    # Adds a vertex to the graph
     def add_vertex(self, vertex: Vertex):
         self._expand_adj_matrix(1)
         vertex.index = len(self.vertices)
         self.vertices.append(vertex)
         return
 
+    # Prints the matrix to the console as GraphViz code
     def export_as_gv(self):
         print("\ngraph D {")
         for i in range(len(self.adj_matrix)):
@@ -83,6 +92,7 @@ class MyGraph:
         print("}\n")
         return
 
+    # Expands the adjacency matrix by the given amount
     def _expand_adj_matrix(self, amount: int):
         # Extend columns
         for col in self.adj_matrix:
