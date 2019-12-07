@@ -1,4 +1,5 @@
-class vertex:
+
+class Vertex:
     color = None
     distance = None
     predecessor = None
@@ -10,17 +11,21 @@ class vertex:
 
     def get_color(self):
         return self.color
+
     def get_distance(self):
         return self.distance
+
     def get_predecessor(self):
         return self.predecessor
 
     def set_color_white(self):
         self.color = 'W'
         return
+
     def set_color_gray(self):
         self.color = 'G'
         return
+
     def set_color_black(self):
         self.color = 'B'
         return
