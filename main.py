@@ -2,6 +2,7 @@ from timing_framework import Timing
 import datetime
 from MyGraph import MyGraph
 
+
 graph = MyGraph()
 graph.init_random(20, 19)
 graph.export_as_gv()
@@ -30,5 +31,3 @@ for res in prim_results:
     prim_results_spread[res.vertices][res.edges] = str(res.exec_time)
 for row in prim_results_spread:
     csv.write(",".join(row) + "\n")
-
-

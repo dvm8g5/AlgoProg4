@@ -34,7 +34,6 @@ def PRIM(G, w, r: vertex):
     return
 
 
-
 def function(G: [vertex], w, adj_vert):
     min_edge = math.inf
     min_ver = None
