@@ -6,11 +6,8 @@ def MST_Kruskal(G: MyGraph):
     # Initializes the a_forest to have no connections, i.e. all are 0
     a_forest = [[0 for y in G.vertices] for x in G.vertices]
 
-    # # Creates a list of lists, representing the disjoint sets that are initially each and every vertex
-    # sets = []
-    # for x in G.vertices:
-    #     sets.append([x])
-    le_tree = []
+    # This will be a list of "sets", or "trees" that will be used to make sure we make no cycles of nodes
+    le_trees = []
 
     edge_list = []
     to_diagonal = 1
@@ -29,14 +26,14 @@ def MST_Kruskal(G: MyGraph):
     u_tree = -1
     v_tree = -2
     for each_edge in edge_list:
-        for each_set in le_tree:
-            if edge_list[each_edge][0] in le_tree[each_set]:
+        for each_set in le_trees:
+            if edge_list[each_edge][0] in le_trees[each_set]:
                 u_tree = each_set
-            if edge_list[each_edge][1] in le_tree[each_set]:
+            if edge_list[each_edge][1] in le_trees[each_set]:
                 v_tree = each_set
             if u_tree != v_tree:
                 a_forest[edge_list[each_edge][0]][edge_list[each_edge][1]] = edge_list[each_edge][2]
-                le_tree.append("{}{}".format(edge_list[each_edge][0], edge_list[each_edge][1]))
+                le_trees.append("{}{}".format(edge_list[each_edge][0], edge_list[each_edge][1]))
     return a_forest
 
 
@@ -51,7 +48,7 @@ for x in range(0, 6):
         print("\t" + str(potato[x][y]), end='')
         ctr += 1
         if ctr == 6:
-            print("\n")
+            print("")
             ctr = 0
 
 exit()
