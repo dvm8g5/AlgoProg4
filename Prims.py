@@ -70,30 +70,8 @@ def main():
 
     start_vertex = vertacies[0]
 
-    PRIM(vertacies, weights, start_vertex)
+    graph = MyGraph.MyGraph(weights, vertacies)
+
+    PRIM(graph.vertices, graph.adj_matrix, start_vertex)
 
 main()
-
-
-
-
-def EXTRACT_MIN(w, adjacent_ver):
-    min_edge = math.inf
-    min_ver = None
-
-    for ver in adjacent_ver:
-        adj_edge_weight = w[vertex_index][ver.get_index()]
-        if adj_edge_weight < min_edge:
-            min_edge = adj_edge_weight
-            min_ver = ver
-
-    return min_ver
-
-
-def Adj(G, w, v, adjacent_ver: [vertex] = []):
-    vertex_index = v.get_index()
-    for index in range(len(w[vertex_index])):
-        if w[vertex_index][index] != math.inf:
-           adjacent_ver.append(G[index]) 
-      
-    return adjacent_ver
