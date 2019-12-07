@@ -9,7 +9,6 @@ class Vertex:
     def __str__(self):
         return str(self.index)
 
-    def get_color(self):
     def get_color(self) -> str:
         return self.color
 
