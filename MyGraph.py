@@ -18,8 +18,13 @@ class MyGraph:
         for i in range(edge_count):
             v1 = random.randint(0, vertex_count-1)
             v2 = random.randint(0, vertex_count-1)
-            weight = random.randint(0, 10)
+            while v1 == v2 or self.adj_matrix[v1][v2] != 0 or self.adj_matrix[v2][v1] != 0:
+                v1 = random.randint(0, vertex_count-1)
+                v2 = random.randint(0, vertex_count-1)
+
+            weight = random.randint(1, 10)
             self.add_edge(v1, v2, weight)
+            self.add_edge(v2, v1, weight)
 
     def clear_vertex_data(self):
         for v in self.vertices:

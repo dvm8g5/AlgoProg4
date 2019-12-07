@@ -1,5 +1,9 @@
 from timing_framework import Timing
 import datetime
+from MyGraph import MyGraph
+
+graph = MyGraph()
+graph.init_random(5, 5)
 
 # Setup
 timer = Timing()
