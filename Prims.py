@@ -57,7 +57,7 @@ def main():
 
     weights = [[0,4,math.inf,math.inf,math.inf,math.inf,math.inf,8,math.inf,],
                [4,0,8,math.inf,math.inf,math.inf,math.inf,11,math.inf,],
-               [math.inf,8,0,7,math.inf,math.inf,math.inf,math.inf,2],
+               [math.inf,8,0,7,math.inf,4,math.inf,math.inf,2],
                [math.inf,math.inf,7,0,9,14,math.inf,math.inf,math.inf,],
                [math.inf,math.inf,math.inf,9,0,10,math.inf,math.inf,math.inf,],
                [math.inf,math.inf,4,14,10,0,2,math.inf,math.inf,],
@@ -65,10 +65,10 @@ def main():
                [8,11,math.inf,math.inf,math.inf,math.inf,1,7],
                [math.inf,math.inf,2,math.inf,math.inf,math.inf,math.inf,7,0],
                ]
-    # for i in range(len(weights)):
-    #     print(len(weights[i]))
 
     start_vertex = vertacies[0]
+
+
 
     graph = MyGraph.MyGraph(weights, vertacies)
 
