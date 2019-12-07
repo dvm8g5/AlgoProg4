@@ -3,7 +3,8 @@ import datetime
 from MyGraph import MyGraph
 
 graph = MyGraph()
-graph.init_random(5, 5)
+graph.init_random(20, 19)
+graph.export_as_gv()
 
 # Setup
 timer = Timing()
