@@ -12,9 +12,11 @@ def PRIM(G, w, r: vertex):
     adj_vert = []
     adj_vert.append(G[r.get_index()])
     Q = G.copy()
-    while Q is not None:
+    Q.remove(r)
+    while Q != []:
         u = function(G, w, adj_vert)
-        Q.remove(u)
+        if u is not None:
+            Q.remove(u)
 
 
 
@@ -26,23 +28,25 @@ def function(G: [vertex], w, adj_vert):
     for ver in adj_vert:
         ver_index = ver.get_index()
         total_len = len(w[ver_index])
-        for index in range(total_len-1):
+        for index in range(total_len):
             if index < total_len and ver_index != index and w[ver_index][index] < min_edge and G[index].get_predecessor() is None:
                 min_ver = G[index]
                 min_ver_index = index
                 min_edge = w[ver_index][index]
                 predecessor_index = ver.get_index()
-                w[ver_index][index] = math.inf
+                # w[ver_index][index] = math.inf
 
-    print()
-    G[min_ver_index].set_predecessor(predecessor_index)
-    G[min_ver_index].set_distance(min_edge)
-    adj_vert.append(G[min_ver_index])
-    for ver in adj_vert:
-        print(ver.get_index(),' Predecessor: ', ver.get_predecessor(), 'Distance: ', ver.get_distance())
-    print(end='\n\n')
+    if min_ver_index is not None:
+        G[min_ver_index].set_predecessor(predecessor_index)
+        G[min_ver_index].set_distance(min_edge)
+        adj_vert.append(G[min_ver_index])
+        for ver in adj_vert:
+            print(ver.get_index(),' Predecessor: ', ver.get_predecessor(), 'Distance: ', ver.get_distance())
+        print(end='\n\n')
 
-    return G[min_ver_index]
+        return G[min_ver_index]
+    else:
+        return None
 
 def main():
     vertacies = []
