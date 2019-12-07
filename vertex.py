@@ -42,8 +42,7 @@ class Vertex:
         self.index = new_id
         return
 
-    def reinit(self, color: str = None, distance: int = None, predecessor: int = None, id: int = None):
+    def reinit(self, color: str = None, distance: int = None, predecessor: int = None):
         self.color = color
         self.distance = distance
         self.predecessor = predecessor
-        self.index = id
