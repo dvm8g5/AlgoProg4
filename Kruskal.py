@@ -1,4 +1,4 @@
-import MyGraph
+from MyGraph import MyGraph
 from operator import itemgetter
 
 
@@ -15,7 +15,7 @@ def MST_Kruskal(G: MyGraph):
     edge_list = []
     to_diagonal = 1
     # Yields a list that contains the edges, via tuples of form (<vert_start>, <vert_end>, <weight>)
-    for x in G.vertices:
+    for x in range(0, len(G.vertices)):
         for y in range(0, to_diagonal):
             if G.adj_matrix[x][y] != 0:
                 edge_tup = (x, y, G.adj_matrix[x][y])
@@ -27,7 +27,7 @@ def MST_Kruskal(G: MyGraph):
 
     # For each edge in the graph, taken in nondecreasing order by weight
     u_tree = -1
-    v_tree = -1
+    v_tree = -2
     for each_edge in edge_list:
         for each_set in le_tree:
             if edge_list[each_edge][0] in le_tree[each_set]:
@@ -40,6 +40,19 @@ def MST_Kruskal(G: MyGraph):
     return a_forest
 
 
+test_graph = MyGraph()
+test_graph.init_random(6, 5)
+potato = MST_Kruskal(test_graph)
 
 
+ctr = 0
+for x in range(0, 6):
+    for y in range(0, 6):
+        print("\t" + str(potato[x][y]), end='')
+        ctr += 1
+        if ctr == 6:
+            print("\n")
+            ctr = 0
+
+exit()
 

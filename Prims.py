@@ -2,6 +2,16 @@ import MyGraph
 import vertex
 import math
 
+def print_adj_matrix(adj_matrix, start_ver):
+    print('graph{\ntrankdir=LR;\n\n')
+    for elem in adj_matrix:
+        print('\tnode[shape=circle]' + str(elem.get_index()))
+        print()
+
+    for elem in adj_matrix:
+        if elem != start_ver:
+            print('\t' + str(elem.get_index()) + ' -- ' + str(elem.get_predecessor()) + '[label = \"' + str(elem.get_distance()) + '\"]\n')
+    print('}')
 
 def PRIM(G, w, r: vertex):
     for ver in G:
@@ -18,6 +28,10 @@ def PRIM(G, w, r: vertex):
         u = function(G, w, adj_vert)
         if u is not None:
             Q.remove(u)
+
+    G[r.get_index()].set_predecessor(None)
+    print_adj_matrix(adj_vert, r)
+    return
 
 
 def function(G: [vertex], w, adj_vert):
@@ -75,3 +89,4 @@ def main():
     PRIM(graph.vertices, graph.adj_matrix, start_vertex)
 
 main()
+
