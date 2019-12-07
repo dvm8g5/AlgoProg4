@@ -15,7 +15,7 @@ class Vertex:
     def get_predecessor(self):
         return self.predecessor
 
-    def get_id(self):
+    def get_index(self):
         return self.index
 
     def set_color_white(self):

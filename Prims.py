@@ -24,20 +24,48 @@ def function(G: [vertex], w, adj_vert):
     predecessor_index = None
     for ver in adj_vert:
         ver_index = ver.get_index()
-        for index in range(len(w[ver_index])):
-            if w[ver_index][index] < min_edge and G[index].get_preecessor == None:
+        total_len = len(w[ver_index])
+        for index in range(total_len-1):
+            if index < total_len and ver_index != index and w[ver_index][index] < min_edge and G[index].get_predecessor() is None:
                 min_ver = G[index]
                 min_ver_index = index
                 min_edge = w[ver_index][index]
                 predecessor_index = ver.get_index()
 
+    for ver in adj_vert:
+        print(ver.get_index(),end=', ')
+    print()
     adj_vert.append(min_ver)
     G[min_ver_index].set_predecessor = predecessor_index
     G[min_ver_index].set_distance = w[predecessor_index][min_ver_index]
 
-    return G[min_ver]
+    return G[min_ver_index]
 
 def main():
+    vertacies = []
+    for index in range(0,9):
+        vertacies.append(vertex.Vertex(index=index))
+    # print(vertacies)
+
+    weights = [[0,4,math.inf,math.inf,math.inf,math.inf,math.inf,8,math.inf,],
+               [4,0,8,math.inf,math.inf,math.inf,math.inf,11,math.inf,],
+               [math.inf,8,0,7,math.inf,math.inf,math.inf,math.inf,2],
+               [math.inf,math.inf,7,0,9,14,math.inf,math.inf,math.inf,],
+               [math.inf,math.inf,math.inf,9,0,10,math.inf,math.inf,math.inf,],
+               [math.inf,math.inf,4,14,10,0,2,math.inf,math.inf,],
+               [math.inf,math.inf,math.inf,math.inf,math.inf,2,0,1,6],
+               [8,11,math.inf,math.inf,math.inf,math.inf,1,7],
+               [math.inf,math.inf,2,math.inf,math.inf,math.inf,math.inf,7,0],
+               ]
+    # for i in range(len(weights)):
+    #     print(len(weights[i]))
+
+    start_vertex = vertacies[0]
+
+    PRIM(vertacies, weights, start_vertex)
+
+main()
+
 
 
 
