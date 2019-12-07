@@ -1,10 +1,10 @@
 
 class Vertex:
-    def __init__(self, color: str = None, distance: int = None, predecessor: int = None, id: int = None):
+    def __init__(self, color: str = None, distance: int = None, predecessor: int = None, index: int = None):
         self.color = color
         self.distance = distance
         self.predecessor = predecessor
-        self.id = id
+        self.index = index
 
     def get_color(self):
         return self.color
@@ -16,7 +16,7 @@ class Vertex:
         return self.predecessor
 
     def get_id(self):
-        return self.id
+        return self.index
 
     def set_color_white(self):
         self.color = 'W'
@@ -39,11 +39,11 @@ class Vertex:
         return
 
     def set_id(self, new_id: int):
-        self.id=new_id
+        self.index = new_id
         return
 
     def reinit(self, color: str = None, distance: int = None, predecessor: int = None, id: int = None):
         self.color = color
         self.distance = distance
         self.predecessor = predecessor
-        self.id = id
+        self.index = id

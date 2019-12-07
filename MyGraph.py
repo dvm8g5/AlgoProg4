@@ -30,7 +30,7 @@ class MyGraph:
 
     def add_vertices(self, amount: int):
         for i in range(amount):
-            self.vertices.append(vertex.Vertex())
+            self.vertices.append(vertex.Vertex(index=len(self.vertices)))
 
         for col in self.adj_matrix:     # Extend columns
             for i in range(amount):
