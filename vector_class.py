@@ -6,14 +6,14 @@ class vertex:
     def __init__(self):
         self.color = None
         self.distance = None
-        self.predesesor = None
+        self.predecessor = None
 
     def get_color(self):
         return self.color
     def get_distance(self):
         return self.distance
     def get_predecessor(self):
-        return self.predesesor
+        return self.predecessor
 
     def set_color_white(self):
         self.color = 'W'
