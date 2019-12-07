@@ -25,15 +25,15 @@ def MST_Kruskal(G: MyGraph):
     # For each edge in the graph, taken in nondecreasing order by weight
     u_tree = -1
     v_tree = -2
-    for each_edge in edge_list:
+    for edge in edge_list:
         for each_set in le_trees:
-            if edge_list[each_edge][0] in le_trees[each_set]:
+            if edge_list[edge][0] in le_trees[each_set]:
                 u_tree = each_set
-            if edge_list[each_edge][1] in le_trees[each_set]:
+            if edge_list[edge][1] in le_trees[each_set]:
                 v_tree = each_set
             if u_tree != v_tree:
-                a_forest[edge_list[each_edge][0]][edge_list[each_edge][1]] = edge_list[each_edge][2]
-                le_trees.append("{}{}".format(edge_list[each_edge][0], edge_list[each_edge][1]))
+                a_forest[edge_list[edge][0]][edge_list[edge][1]] = edge_list[edge][2]
+                le_trees.append("{}{}".format(edge_list[edge][0], edge_list[edge][1]))
     return a_forest
 
 

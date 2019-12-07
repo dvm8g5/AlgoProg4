@@ -51,7 +51,11 @@ class MyGraph:
 
         # Rebuild matrix
         for v in self.vertices:
-            self.adj_matrix[v.index][v.predecessor] = v.distance - self.vertices[v.predecessor].distance
+            if v.predecessor is not None:
+                if v.distance is not None and self.vertices[v.predecessor].distance is not None:
+                    self.adj_matrix[v.index][v.predecessor] = v.distance - self.vertices[v.predecessor].distance
+                else:
+                    self.adj_matrix[v.index][v.predecessor] = 1
 
     # Effectively removes directed edges by making the adjacency matrix symmetrical along x = y
     def make_undirected(self) -> None:
