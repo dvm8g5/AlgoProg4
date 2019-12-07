@@ -2,6 +2,7 @@ import MyGraph
 import vertex
 import math
 
+
 def PRIM(G, w, r: vertex):
     for ver in G:
         ver.set_distance(math.inf)
@@ -17,7 +18,6 @@ def PRIM(G, w, r: vertex):
         u = function(G, w, adj_vert)
         if u is not None:
             Q.remove(u)
-
 
 
 def function(G: [vertex], w, adj_vert):

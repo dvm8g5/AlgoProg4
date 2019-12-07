@@ -1,10 +1,10 @@
 
 import random
-import vertex
+from vertex import Vertex
 
 
 class MyGraph:
-    def __init__(self, adj_matrix: [int] = [], vertices: [vertex.Vertex] = []):
+    def __init__(self, adj_matrix: [int] = [], vertices: [Vertex] = []):
         self.adj_matrix = adj_matrix
         self.vertices = vertices
 
@@ -40,20 +40,41 @@ class MyGraph:
     def clear_vertex_data(self) -> None:
         for v in self.vertices:
             v.reinit()
+        return
+
+    def rebuild_adj_matrix(self) -> None:
+        # Reset matrix
+        self.adj_matrix = []
+        self._expand_adj_matrix(len(self.vertices))
+
+        # Rebuild matrix
+        for v in self.vertices:
+            self.adj_matrix[v.index][v.predecessor] = v.distance - self.vertices[v.predecessor].distance
+
+        # Make matrix symmetrical along x = y
+        self.make_undirected()
+
+    def make_undirected(self) -> None:
+        for i in range(len(self.adj_matrix)):
+            for j in range(len(self.adj_matrix)):
+                if self.adj_matrix[i][j] != 0:
+                    self.adj_matrix[j][i] = self.adj_matrix[i][j]
 
     def add_edge(self, v1: int, v2: int, weight: int) -> None:
         self.adj_matrix[v2][v1] = weight
+        return
 
     def add_vertices(self, amount: int) -> None:
+        self._expand_adj_matrix(amount)
         for i in range(amount):
-            self.vertices.append(vertex.Vertex(index=len(self.vertices)))
+            self.vertices.append(Vertex(index=len(self.vertices)))
+        return
 
-        for col in self.adj_matrix:     # Extend columns
-            for i in range(amount):
-                col.append(0)
-
-        for i in range(amount):           # Extend rows
-            self.adj_matrix.append([0 for i in range(amount)])
+    def add_vertex(self, vertex: Vertex):
+        self._expand_adj_matrix(1)
+        vertex.index = len(self.vertices)
+        self.vertices.append(vertex)
+        return
 
     def export_as_gv(self):
         print("\ngraph D {")
@@ -62,3 +83,15 @@ class MyGraph:
                 if self.adj_matrix[i][j] > 0:
                     print("{} -- {}[label=\"{}\"]".format(i, j, self.adj_matrix[i][j]))
         print("}\n")
+        return
+
+    def _expand_adj_matrix(self, amount: int):
+        # Extend columns
+        for col in self.adj_matrix:
+            for i in range(amount):
+                col.append(0)
+
+        # Extend rows
+        for i in range(amount):
+            self.adj_matrix.append([0 for i in range(amount)])
+        return
