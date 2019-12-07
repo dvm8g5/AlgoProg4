@@ -2,6 +2,7 @@ import MyGraph
 import vertex
 import math
 
+# This function takes an adjacency matrix generated from PRIM and generates a graphvis usable text file.
 def print_adj_matrix(adj_matrix, start_ver):
     print('graph{\ntrankdir=LR;\n\n')
     for elem in adj_matrix:
@@ -13,6 +14,7 @@ def print_adj_matrix(adj_matrix, start_ver):
             print('\t' + str(elem.get_index()) + ' -- ' + str(elem.get_predecessor()) + '[label = \"' + str(elem.get_distance()) + '\"]\n')
     print('}')
 
+# This function takes a list of vertexes object G, an adjacency matrix w, and a starting vector r.
 def PRIM(G, w, r: vertex):
     for ver in G:
         ver.set_distance(math.inf)
@@ -30,10 +32,10 @@ def PRIM(G, w, r: vertex):
             Q.remove(u)
 
     G[r.get_index()].set_predecessor(None)
-    print_adj_matrix(adj_vert, r)
+    # print_adj_matrix(adj_vert, r)
     return
 
-
+# This function is the loop from lines 8-11 in the pseudocode that extracts min and then updates weights and predecessors as needed.
 def function(G: [vertex], w, adj_vert):
     min_edge = math.inf
     min_ver = None
@@ -62,6 +64,7 @@ def function(G: [vertex], w, adj_vert):
     else:
         return None
 
+# main is just an example function for testing PRIM and that the methods work.
 def main():
     vertacies = []
     for index in range(0,9):
@@ -88,5 +91,5 @@ def main():
 
     PRIM(graph.vertices, graph.adj_matrix, start_vertex)
 
-main()
+# main()
 
