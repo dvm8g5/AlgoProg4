@@ -1,9 +1,10 @@
 
 import random
+import vertex
 
 
 class MyGraph:
-    def __init__(self, adj_matrix, vertices):
+    def __init__(self, adj_matrix: [int] = [], vertices: [vertex.Vertex] = []):
         self.adj_matrix = adj_matrix
         self.vertices = vertices
 
@@ -20,13 +21,20 @@ class MyGraph:
             weight = random.randint(0, 10)
             self.add_edge(v1, v2, weight)
 
-    def add_edge(self, v1, v2, weight):
+    def clear_vertex_data(self):
+        for v in self.vertices:
+            v.reinit()
+
+    def add_edge(self, v1: int, v2: int, weight: int):
         self.adj_matrix[v2][v1] = weight
 
-    def add_vertices(self, amnt):
+    def add_vertices(self, amount: int):
+        for i in range(amount):
+            self.vertices.append(vertex.Vertex())
+
         for col in self.adj_matrix:     # Extend columns
-            for i in range(amnt):
+            for i in range(amount):
                 col.append(0)
 
-        for i in range(amnt):           # Extend rows
-            self.adj_matrix.append([0 for i in range(amnt)])
+        for i in range(amount):           # Extend rows
+            self.adj_matrix.append([0 for i in range(amount)])
