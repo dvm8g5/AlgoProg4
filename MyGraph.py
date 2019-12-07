@@ -11,11 +11,9 @@ class MyGraph:
     # Creates a randomly-generated undirected weighted graph, with all vertices connected to every other vertex.
     def init_random(self, vertex_count: int, edge_count: int) -> None:
         if edge_count > (vertex_count ** 2 - vertex_count) / 2:
-            print("Tried to create a graph with too many edges!")
-            return
+            raise Exception("Tried to create a graph with too many edges! ({} of maximum {})".format(edge_count, (vertex_count ** 2 - vertex_count) // 2))
         if edge_count < vertex_count-1:
-            print("Tried to create a graph with too many vertices!")
-            return
+            raise Exception("Tried to create a graph with too many vertices! ({} of maximum {})".format(vertex_count, edge_count+1))
 
         self.adj_matrix = []
         self.add_vertices(vertex_count)
