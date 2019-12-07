@@ -56,9 +56,9 @@ class MyGraph:
             self.adj_matrix.append([0 for i in range(amount)])
 
     def export_as_gv(self):
-        print("\ndigraph D {")
+        print("\ngraph D {")
         for i in range(len(self.adj_matrix)):
             for j in range(i, len(self.adj_matrix[i])):
                 if self.adj_matrix[i][j] > 0:
-                    print("{} -> {}[label=\"{}\"]".format(i, j, self.adj_matrix[i][j]))
+                    print("{} -- {}[label=\"{}\"]".format(i, j, self.adj_matrix[i][j]))
         print("}\n")
