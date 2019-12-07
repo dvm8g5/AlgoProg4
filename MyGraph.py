@@ -53,9 +53,6 @@ class MyGraph:
         for v in self.vertices:
             self.adj_matrix[v.index][v.predecessor] = v.distance - self.vertices[v.predecessor].distance
 
-        # Make matrix symmetrical along x = y
-        self.make_undirected()
-
     # Effectively removes directed edges by making the adjacency matrix symmetrical along x = y
     def make_undirected(self) -> None:
         for i in range(len(self.adj_matrix)):
@@ -83,12 +80,12 @@ class MyGraph:
         return
 
     # Prints the matrix to the console as GraphViz code
-    def export_as_gv(self):
-        print("\ngraph D {")
+    def export_as_gv(self, directed: bool = False):
+        print("\n{} D ".format("digraph" if directed else "graph") + "{")
         for i in range(len(self.adj_matrix)):
-            for j in range(i, len(self.adj_matrix[i])):
+            for j in range(0 if directed else i, len(self.adj_matrix[i])):
                 if self.adj_matrix[i][j] > 0:
-                    print("{} -- {}[label=\"{}\"]".format(i, j, self.adj_matrix[i][j]))
+                    print("{} {} {}[label=\"{}\"]".format(i, "->" if directed else "--", j, self.adj_matrix[i][j]))
         print("}\n")
         return
 
