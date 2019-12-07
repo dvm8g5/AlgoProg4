@@ -1,13 +1,13 @@
 class vertex:
     color = None
     distance = None
-    predesesor = None
+    predecessor = None
 
     def get_color(self):
         return self.color
     def get_distance(self):
         return self.distance
-    def get_predessesor(self):
+    def get_predecessor(self):
         return self.predesesor
 
     def set_color_white(self):
@@ -20,8 +20,8 @@ class vertex:
         self.color = 'B'
         return
 
-    def set_predessesor(self, new_predessesor):
-        self.predesesor = new_predessesor
+    def set_predecessor(self, new_predecessor):
+        self.predecessor = new_predecessor
         return
 
     def set_distance(self, new_distance):
