@@ -57,7 +57,7 @@ def main():
 
     weights = [[0,4,math.inf,math.inf,math.inf,math.inf,math.inf,8,math.inf,],
                [4,0,8,math.inf,math.inf,math.inf,math.inf,11,math.inf,],
-               [math.inf,8,0,7,math.inf,math.inf,math.inf,math.inf,2],
+               [math.inf,8,0,7,math.inf,4,math.inf,math.inf,2],
                [math.inf,math.inf,7,0,9,14,math.inf,math.inf,math.inf,],
                [math.inf,math.inf,math.inf,9,0,10,math.inf,math.inf,math.inf,],
                [math.inf,math.inf,4,14,10,0,2,math.inf,math.inf,],
@@ -65,35 +65,13 @@ def main():
                [8,11,math.inf,math.inf,math.inf,math.inf,1,7],
                [math.inf,math.inf,2,math.inf,math.inf,math.inf,math.inf,7,0],
                ]
-    # for i in range(len(weights)):
-    #     print(len(weights[i]))
 
     start_vertex = vertacies[0]
 
-    PRIM(vertacies, weights, start_vertex)
+
+
+    graph = MyGraph.MyGraph(weights, vertacies)
+
+    PRIM(graph.vertices, graph.adj_matrix, start_vertex)
 
 main()
-
-
-
-
-def EXTRACT_MIN(w, adjacent_ver):
-    min_edge = math.inf
-    min_ver = None
-
-    for ver in adjacent_ver:
-        adj_edge_weight = w[vertex_index][ver.get_index()]
-        if adj_edge_weight < min_edge:
-            min_edge = adj_edge_weight
-            min_ver = ver
-
-    return min_ver
-
-
-def Adj(G, w, v, adjacent_ver: [vertex] = []):
-    vertex_index = v.get_index()
-    for index in range(len(w[vertex_index])):
-        if w[vertex_index][index] != math.inf:
-           adjacent_ver.append(G[index]) 
-      
-    return adjacent_ver
