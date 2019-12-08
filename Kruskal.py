@@ -60,6 +60,5 @@ def MST_Kruskal(G: MyGraph):
             le_trees[v_tree] = removed.copy()
             a_forest[edge_list[edge][start_vertex]][edge_list[edge][end_vertex]] = edge_list[edge][vertex_weight]
             a_forest[edge_list[edge][end_vertex]][edge_list[edge][start_vertex]] = edge_list[edge][vertex_weight]
-        print('After: ', le_trees)
 
     return a_forest
