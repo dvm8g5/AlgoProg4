@@ -1,4 +1,7 @@
 from timing_framework import Timing
+from MyGraph import MyGraph
+from Kruskal import MST_Kruskal
+from Prims import PRIM
 import datetime
 
 # Setup
@@ -25,3 +28,12 @@ for res in prim_results:
     prim_results_spread[res.vertices][res.edges] = str(res.exec_time)
 for row in prim_results_spread:
     csv.write(",".join(row) + "\n")
+
+# Print out a basic test
+graph = MyGraph()
+graph.init_random(5, 4)
+print(str(MST_Kruskal(graph)))
+graph.clear_vertex_data()
+PRIM(graph.vertices, graph.adj_matrix, graph.vertices[0])
+print(str(graph.adj_matrix))
+
