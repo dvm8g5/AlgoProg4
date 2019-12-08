@@ -16,6 +16,7 @@ class MyGraph:
             raise Exception("Tried to create a graph with too many vertices! ({} of maximum {})".format(vertex_count, edge_count+1))
 
         self.adj_matrix = []
+        self.vertices = []
         self.add_vertices(vertex_count)
         connected_verts = [0]  # The vertices that this graph connects
 

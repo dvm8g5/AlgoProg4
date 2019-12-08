@@ -14,7 +14,7 @@ def print_adj_matrix(adj_matrix, start_ver):
             print('\t' + str(elem.get_index()) + ' -- ' + str(elem.get_predecessor()) + '[label = \"' + str(elem.get_distance()) + '\"]\n')
     print('}')
 
-# This function takes a list of vertexes object G, an adjacency matrix w, and a starting vector r.
+# This function takes a list of vertexes object G, an adjacency matrix w, and a starting vertex r.
 def PRIM(G, w, r: vertex):
     for ver in G:
         ver.set_distance(math.inf)
@@ -32,7 +32,6 @@ def PRIM(G, w, r: vertex):
             Q.remove(u)
 
     G[r.get_index()].set_predecessor(None)
-    # print_adj_matrix(adj_vert, r)
     return
 
 # This function is the loop from lines 8-11 in the pseudocode that extracts min and then updates weights and predecessors as needed.
@@ -56,40 +55,8 @@ def function(G: [vertex], w, adj_vert):
         G[min_ver_index].set_predecessor(predecessor_index)
         G[min_ver_index].set_distance(min_edge)
         adj_vert.append(G[min_ver_index])
-        for ver in adj_vert:
-            print(ver.get_index(),' Predecessor: ', ver.get_predecessor(), 'Distance: ', ver.get_distance())
-        print(end='\n\n')
 
         return G[min_ver_index]
     else:
         return None
-
-# main is just an example function for testing PRIM and that the methods work.
-def main():
-    vertacies = []
-    for index in range(0,9):
-        vertacies.append(vertex.Vertex(index=index))
-    for ver in vertacies:
-        print(ver)
-
-    weights = [[0,4,math.inf,math.inf,math.inf,math.inf,math.inf,8,math.inf,],
-               [4,0,8,math.inf,math.inf,math.inf,math.inf,11,math.inf,],
-               [math.inf,8,0,7,math.inf,4,math.inf,math.inf,2],
-               [math.inf,math.inf,7,0,9,14,math.inf,math.inf,math.inf,],
-               [math.inf,math.inf,math.inf,9,0,10,math.inf,math.inf,math.inf,],
-               [math.inf,math.inf,4,14,10,0,2,math.inf,math.inf,],
-               [math.inf,math.inf,math.inf,math.inf,math.inf,2,0,1,6],
-               [8,11,math.inf,math.inf,math.inf,math.inf,1,7],
-               [math.inf,math.inf,2,math.inf,math.inf,math.inf,math.inf,7,0],
-               ]
-
-    start_vertex = vertacies[0]
-
-
-
-    graph = MyGraph.MyGraph(weights, vertacies)
-
-    PRIM(graph.vertices, graph.adj_matrix, start_vertex)
-
-# main()
 
