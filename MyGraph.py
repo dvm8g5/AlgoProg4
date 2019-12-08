@@ -25,8 +25,8 @@ class MyGraph:
             # Pick v2 from either non-spanned vertices, or a random vertex if all are spanned
             v2 = random.choice([i for i in range(vertex_count) if i not in connected_verts or len(connected_verts) >= vertex_count])
             while v1 == v2 or self.adj_matrix[v1][v2] != 0 or self.adj_matrix[v2][v1] != 0:
-                v1 = random.randint(0, vertex_count)
-                v2 = random.randint(0, vertex_count)
+                v1 = random.randint(0, vertex_count - 1)
+                v2 = random.randint(0, vertex_count - 1)
 
             weight = random.randint(1, 10)
             self.add_edge(v1, v2, weight)
